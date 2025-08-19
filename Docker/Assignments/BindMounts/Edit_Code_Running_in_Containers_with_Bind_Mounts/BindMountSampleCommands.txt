@@ -1,0 +1,20 @@
+- Change directory to folder holding web app
+cd ~/repos/udemy-docker-mastery/bindmount-sampe-1
+
+- Run Jekyll container
+docker container run -p 80:4000 --name jekyll -v $(pwd):/site bretfisher/jekyll-serve
+
+- Open app in browser
+URL: http://localhost
+
+- Follow logs in Jekyll container for updates
+docker container logs -f jekyll
+
+- Edit file on host machine (2020-07-21-welcome-to-jekyll.markdown)
+Changed the first line from:
+    "You’ll find this post in your `_posts` directory."
+Changed the first line to:
+    "I'll find this post in your `_posts` directory."
+
+- View changes in browser upon refresh
+F5

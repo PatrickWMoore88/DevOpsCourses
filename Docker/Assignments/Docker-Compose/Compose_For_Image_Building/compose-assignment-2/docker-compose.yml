@@ -1,0 +1,31 @@
+# create your drupal and mariadb config here, based off the last assignment
+services:
+  drupal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: drupal-custom
+    volumes:
+      - modules:/var/www/html/modules
+      - profiles:/var/www/html/profiles
+      - themes:/var/www/html/themes
+      - sites:/var/www/html/sites
+    ports:
+      - "8080:80"
+  mariadb:
+    image: mariadb:10.4
+    environment:
+      - MARIADB_ROOT_PASSWORD=DrupalPass
+      - MARIADB_DATABASE=drupal
+      - MARIADB_USER=drupal
+      - MARIADB_PASSWORD=DrupalPass
+    volumes:
+      - mdbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"     
+volumes:
+  modules:
+  profiles:
+  themes:
+  sites:
+  mdbdata:
